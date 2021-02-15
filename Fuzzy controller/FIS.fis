@@ -1,0 +1,53 @@
+[System]
+Name='FIS'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=2
+NumRules=7
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='e'
+Range=[-5 5]
+NumMFs=3
+MF1='Neg':'trimf',[-10 -5 -0]
+MF2='Zero':'trimf',[-1 0 1]
+MF3='Pos':'trimf',[0 5 10]
+
+[Input2]
+Name='e_dot'
+Range=[-5 5]
+NumMFs=3
+MF1='Neg':'trimf',[-10 -5 0]
+MF2='Zero':'trimf',[-1 0 1]
+MF3='Pos':'trimf',[0 5 10]
+
+[Output1]
+Name='Cooler'
+Range=[0 5]
+NumMFs=3
+MF1='Low':'trapmf',[-2 0 0.5 2.5]
+MF2='Medium':'trimf',[1.5 2.5 3.5]
+MF3='High':'trapmf',[2.5 4.5 5 8]
+
+[Output2]
+Name='Heater'
+Range=[0 5]
+NumMFs=3
+MF1='Low':'trapmf',[-2 0 0.5 2.5]
+MF2='Medium':'trimf',[1.5 2.5 3.5]
+MF3='High':'trapmf',[2.5 4.5 5 8]
+
+[Rules]
+3 3, 1 3 (1) : 1
+3 1, 1 2 (1) : 1
+2 1, 2 1 (1) : 1
+2 3, 1 2 (1) : 1
+1 1, 3 1 (1) : 1
+1 3, 2 1 (1) : 1
+2 2, 2 2 (1) : 1
